@@ -1,0 +1,44 @@
+<h1>Đăng ký</h1>
+<form (ngSubmit)="registration()">
+  <div class="form-group">
+    <label for="fullname">Họ và tên</label>
+    <input type="text" class="form-control" id="fullname" [(ngModel)]="customer.fullName" placeholder="Nhập họ tên" [ngModelOptions]="{standalone: true}"
+    #name="ngModel" required [class.is-invalid]="name.invalid && name.touched">
+    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Họ tên không được để trống!</small>
+  </div>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input type="email" class="form-control" id="email" [(ngModel)]="customer.email" placeholder="Nhập email" [ngModelOptions]="{standalone: true}"
+    #email="ngModel" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [class.is-invalid]="email.invalid && email.touched">
+      <div *ngIf="email.errors && (email.invalid && email.touched)">
+        <small class="text-danger" *ngIf="email.errors['required']">Email không được để trống!</small>
+        <small class="text-danger" *ngIf="email.errors['pattern']">Email không hợp lệ!</small>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="password">Mật khẩu</label>
+    <input type="password" class="form-control" id="password" [(ngModel)]="customer.password" placeholder="Nhập mật khẩu" [ngModelOptions]="{standalone: true}"
+    #password="ngModel" required [class.is-invalid]="password.invalid && password.touched">
+    <small class="text-danger" [class.d-none]="password.valid || password.untouched">Mật khẩu không được để trống!</small>
+  </div>
+  <div class="form-group">
+    <label for="eamail">Nhập lại mật khẩu</label>
+    <input type="text" class="form-control" id="confirm" placeholder="Nhập lại mật khẩu" [ngModelOptions]="{standalone: true}"
+    #cpass="ngModel" (ngModel)="customer.password" required [class.is-invalid]="cpass.invalid && cpass.touched">
+    <small class="text-danger" [class.d-none]="cpass.value == password.value || password.untouched">Mật khẩu không khớp nhau!</small>
+  </div>
+      <div class="form-group">
+        <label for="sdt">Sđt</label>
+        <input type="text" class="form-control" id="phone" [(ngModel)]="customer.phone" placeholder="Nhập sđt" [ngModelOptions]="{standalone: true}"
+        #phone="ngModel" required [class.is-invalid]="phone.invalid && phone.touched">
+      <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Sđt không được để trống!</small>
+      </div>
+    <div class="form-group">
+      <label for="address">Địa chỉ</label>
+      <input type="text" class="form-control" id="address" [(ngModel)]="customer.address" placeholder="Nhập đia chỉ" [ngModelOptions]="{standalone: true}"
+      #address="ngModel" required [class.is-invalid]="address.invalid && address.touched">
+      <small class="text-danger" [class.d-none]="address.valid || address.untouched">Địa chỉ không được để trống!</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Đăng ký</button>
+  <small class="float-right">Đã có tài khoản?<a (click)="goToLogin()" > Đăng nhập</a></small>
+</form>

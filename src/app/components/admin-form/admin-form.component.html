@@ -1,0 +1,42 @@
+<app-header></app-header>
+<body>
+    <div class="content">
+      <div class="container">
+        <div class="row" id="table">
+            <div class="col">
+            <br>
+            <div class="col-md-8 offset-md-2">
+              <!-- <form (ngSubmit)="saveAdmin()"> -->
+                <!-- <input type="text" class="form-control" name="name" [(ngModel)]="name" (ngModelChange)="search()" placeholder="nhập tên">  -->
+              <form>
+                <div class="form-group" >
+                  <label for="name">Họ Tên</label>
+                  <input type="text" class="form-control" >
+                  <input type="text" class="form-control" id="name" [(ngModel)]="admin.name" [ngModelOptions]="{standalone: true}" placeholder="Nhập họ tên">
+                </div>
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập</label>
+                    <input type="text" class="form-control" id="username" [(ngModel)]="admin.username" [ngModelOptions]="{standalone: true}" placeholder="Nhập tên đăng nhập">
+                  </div>
+                <div class="form-group">
+                  <label for="password">Mật khẩu</label>
+                  <input type="password" class="form-control" id="password" [(ngModel)]="admin.pass" [ngModelOptions]="{standalone: true}" placeholder="Nhập mật khẩu">
+                </div>
+                <div class="form-group">
+                    <label for="role">Chức vụ</label><br>
+                    <select [compareWith]="comparativeRole" [(ngModel)]="admin.role" [ngModelOptions]="{standalone: true}" class="form-control" name="role" >
+                        <option [ngValue]="undefined">-----Chọn chức vụ-----</option>
+                        <option *ngFor="let role of roles" [ngValue]="role">{{role.name}}</option>
+                      </select>
+                  </div>
+              
+                <!-- <button type="submit" class="btn btn-primary">Hoàn thành</button> -->
+                <button type="submit" class="btn btn-primary" (click)="updateAdmin()" *ngIf="admin.id">Cập nhật</button>
+                <button type="submit" class="btn btn-primary" (click)="saveAdmin()" *ngIf="!admin.id">Tạo mới</button>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer></body>

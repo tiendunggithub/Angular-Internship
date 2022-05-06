@@ -1,0 +1,91 @@
+<app-header></app-header>
+<body>
+    <div class="content">
+      <div class="container">
+        <div class="row" id="table">
+            <div class="col">
+            <br>
+            <div class="col-md-8 offset-md-2">
+                <!-- <form (ngSubmit)="saveproduct()"> -->
+                <form [formGroup]="formCreate">
+                  <div class="form-group" >
+                    <label for="name">Tên sản phẩm</label>
+                    <input type="text" class="form-control" [(ngModel)]="product.name" formControlName="name" placeholder="Nhập họ tên">
+                  </div>
+                  <div class="form-group" >
+                    <label for="name">Hình ảnh</label>
+                    <input type="file" accept="image/*" formControlName="image" (change)="onSelectFile($event)">
+                    <br>
+                    <div *ngIf="product.id">
+                      <img *ngIf="!imgURL" src="{{'http://localhost:8080/api/v1/product/images/'+product.id}}" height="200" width="200">
+                      <img *ngIf="imgURL" [src]="imgURL" height="200" width="200">
+                    </div>
+                    <div *ngIf="!product.id">
+                    <img [src]="imgURL" *ngIf="imgURL" height="200" width="200">
+                    </div>
+                    </div>
+                  <div class="form-group">
+                      <label for="username">Giá bán</label>
+                      <input type="text" class="form-control" id="username" [(ngModel)]="product.price" formControlName="price" placeholder="Nhập giá bán">
+                    </div>
+                  <div class="form-group">
+                    <label for="password">Giá khuyến mãi</label>
+                    <input type="text" class="form-control" id="password" [(ngModel)]="product.promotion" formControlName="promotion" placeholder="Nhập giá khuyến mãi">
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Mô tả</label>
+                    <input type="textarea" class="form-control" id="desciption" [(ngModel)]="product.description" formControlName="description" placeholder="Nhập mô tả">
+                  </div>
+                  <div class="form-group">
+                      <label for="role">Danh mục sản phẩm</label><br>
+                      <select [compareWith]="comparativeCategory" formControlName="category" [(ngModel)]="product.category" class="form-control" name="role" >
+                          <option ngValue="undefined">-----Chọn danh mục-----</option>
+                          <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+                        </select>
+                    </div>
+                  
+                  <button type="submit" class="btn btn-primary" (click)="saveProduct(formCreate)" *ngIf="!product.id">Tạo mới</button>
+                  <button type="submit" class="btn btn-primary" (click)="updateProduct()" *ngIf="product.id">Cập nhật</button>
+                  <button type="submit" class="btn btn-danger" (click)="goToProductList()" >Quay lại</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer></body>
+  <!-- <div class="container row">
+    <div class="col-md-6">
+        <input type="file" (change)="onFileChanged($event)">
+
+    </div>
+    <div class="col-md-6">
+        <input type="button" (click)="onUpload()" value="upload">
+    </div>
+</div>
+<hr />
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=message>{{message}}</div>
+    </div>
+</div>
+
+<div class="container row">
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
+            name="name" />
+    </div>
+    <div class="col-md-6">
+        <input type="button" (click)="getImage()" value="Get Image">
+
+    </div>
+</div>
+
+<div class="container row">
+    <div class="col-md-12">
+        <div *ngIf=retrievedImage>
+            <img [src]="retrievedImage">
+        </div>
+    </div>
+</div> -->
+  

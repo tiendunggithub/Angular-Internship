@@ -1,0 +1,9 @@
+body, .content {
+    background-color: #F5F5F5;
+}
+
+#table{
+    background-color: white;
+    box-shadow: 5px 5px 5px #888888;
+    border-radius: 2%;
+}
