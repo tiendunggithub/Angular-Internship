@@ -32,7 +32,8 @@ import { CustomerRegistrationComponent } from './components/customer-registratio
 import { CustomerLoginComponent } from './components/customer-login/customer-login.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
-import { IndexComponent } from './components/index/index.component'
+import { IndexComponent } from './components/index/index.component';
+import { CartComponent } from './components/cart/cart.component'
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { IndexComponent } from './components/index/index.component'
     CustomerLoginComponent,
     CustomerDetailsComponent,
     CustomerListComponent,
-    IndexComponent
+    IndexComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
