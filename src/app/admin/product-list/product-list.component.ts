@@ -1,7 +1,7 @@
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { ProductService } from './../../services/product.service';
-import { Product } from './../../models/product';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

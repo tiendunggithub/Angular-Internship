@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
-import { Admin } from './../../models/admin';
+import { Admin } from '../../models/admin';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AdminService } from './../../services/admin.service';
+import { AdminService } from '../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,0 +1,52 @@
+<h1>Thông tin chi tiết</h1>
+<form aria-readonly="false">
+  <div class="form-group">
+    <label for="fullname">Họ và tên</label>
+    <input
+      readonly
+      type="text"
+      class="form-control"
+      id="fullname"
+      [(ngModel)]="customer.fullName"
+      placeholder="Nhập họ tên"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  </div>
+  <div class="form-group">
+    <label for="email">email</label>
+    <input
+      readonly
+      type="email"
+      class="form-control"
+      id="email"
+      [(ngModel)]="customer.email"
+      placeholder="Nhập email"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  </div>
+  <div class="form-group">
+    <label for="sdt">Sđt</label>
+    <input
+      readonly
+      type="text"
+      class="form-control"
+      id="phone"
+      [(ngModel)]="customer.phone"
+      placeholder="Nhập sđt"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  </div>
+  <div class="form-group">
+    <label for="address">Địa chỉ</label>
+    <input
+      readonly
+      type="text"
+      class="form-control"
+      id="address"
+      [(ngModel)]="customer.address"
+      placeholder="Nhập đia chỉ"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  </div>
+  <button class="btn btn-primary" (click)="goToCustomerList()">Quay lại</button>
+</form>

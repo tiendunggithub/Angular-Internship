@@ -1,15 +1,11 @@
 <app-header></app-header>
-<body>
-    <div class="content">
-      <div class="container">
-        <div class="row" id="table">
-            <div class="col">
-            <br>
             <h2>Danh sách Nhân viên</h2>
             <mat-divider></mat-divider>
             <br>
             <div class="row">
-            <div class="col-sm-3"><button  mat-raised-button color="primary" [routerLink]="['admin-form']">Thêm mới</button></div>
+            <div class="col-sm-3"><button  mat-raised-button color="primary" [routerLink]="['admin-form']">Thêm mới</button>
+            <button [routerLink]="['admin-form']">new</button>
+            </div>
             <div class="col-sm-6"></div>
             <div class="col-sm-3">
                 <form class="form-inline my-2 my-lg-0">
@@ -54,8 +50,4 @@
                         [pageSizeOptions]="[5, 10, 25]" aria-label="Select page">
             </mat-paginator>
             <!-- ========================== -->
-            </div>
-        </div>
-    </div>
-</div>
-<app-footer></app-footer></body>
+            <app-footer></app-footer>

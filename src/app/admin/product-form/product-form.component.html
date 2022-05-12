@@ -1,11 +1,5 @@
-<app-header></app-header>
-<body>
-    <div class="content">
-      <div class="container">
-        <div class="row" id="table">
-            <div class="col">
-            <br>
-            <div class="col-md-8 offset-md-2">
+
+          <div class="col-md-8 offset-md-2">
               <!-- <form (ngSubmit)="saveproduct()"> -->
               <form [formGroup]="productForm">
                 <div class="form-group" >
@@ -48,9 +42,3 @@
                 <button type="submit" class="btn btn-primary" (click)="updateProduct()" *ngIf="product.id">Cập nhật</button>
                 <button type="submit" class="btn btn-danger" (click)="goToProductList()" >Quay lại</button>
                 </form>
-            </div>
-          </div>
-        </div>
-    </div>
-</div>
-<app-footer></app-footer></body>

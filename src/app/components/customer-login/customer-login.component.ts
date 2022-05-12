@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { CustomerService } from './../../services/customer.service';
-import { Customer } from './../../models/customer';
+import { CustomerService } from '../../services/customer.service';
+import { Customer } from '../../models/customer';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
