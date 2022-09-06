@@ -84,7 +84,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   goToProductList(){
-    this.router.navigate(['product']);
+    this.router.navigate(['admin/product']);
   }
 
   saveProduct(submitForm: FormGroup){

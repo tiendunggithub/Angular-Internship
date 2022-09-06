@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ListComponent } from './list/list.component';
@@ -69,6 +70,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
         Ng2SearchPipeModule,
         MatDividerModule,
         ReactiveFormsModule,
+        MatCheckboxModule,
         ToastrModule.forRoot()
     ],
     providers: [],

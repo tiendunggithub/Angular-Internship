@@ -1,36 +1,53 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6699FF;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <!-- <a class="navbar-brand" href="#">Hidden brand</a> -->
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="admin" routerLinkActive="active" >Admin <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <!-- <a class="nav-link" routerLink="category-list" routerLinkActive="active">Danh mục</a> -->
-          <a class="nav-link" [routerLink]="['category-list']" routerLinkActive="active">Danh mục</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="product" routerLinkActive="active">Sản phẩm</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="customer" routerLinkActive="active">Khách hàng</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="login" routerLinkActive="active">Login Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="customer/login" routerLinkActive="active">Login Customer</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="customer/registration" routerLinkActive="active">Registration Customer</a>
-        </li>
-      </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
+  <div class="sidebar active">
+    <div class="logo_content">
+        <div class="logo">
+            <i class='bx bxs-hot'></i>
+            <div class="logo_name">2 0 0 1</div>
+        </div>
+        <i class="bx bx-menu" id="btn"></i>
     </div>
-  </nav>
+    <ul class="nav_list">
+        <li>
+            <a routerLink="../admin">
+                <i class='bx bxs-dashboard'></i>
+                <span class="links_name">DashBoard</span>
+            </a>
+            <span class="tooltip">DashBoard</span>
+        </li>
+        <li>
+            <a routerLink="../admin/list">
+                <i class='bx bxs-dashboard'></i>
+                <span class="links_name">Admin</span>
+            </a>
+            <span class="tooltip">Admin</span>
+        </li>
+        <li>
+            <a routerLink="../admin/product">
+                <i class='bx bx-table'></i>
+                <span class="links_name">Sản Phẩm</span>
+            </a>
+            <span class="tooltip">Sản Phẩm</span>
+        </li>
+        <li>
+            <a routerLink="../admin/category-list">
+                <i class='bx bx-table'></i>
+                <span class="links_name">Danh Mục</span>
+            </a>
+            <span class="tooltip">Danh Mục</span>
+        </li>
+        <li>
+            <a routerLink="../admin/customer">
+                <i class='bx bx-user'></i>
+                <span class="links_name">Khách Hàng</span>
+            </a>
+            <span class="tooltip">Khách Hàng</span>
+        </li>
+        <li>
+            <a (click)="logout()">
+                <i class='bx bx-log-out'></i>
+                <span class="links_name">Đăng xuất</span>
+            </a>
+            <span class="tooltip">Đăng xuất</span>
+        </li>
+    </ul>
+</div>

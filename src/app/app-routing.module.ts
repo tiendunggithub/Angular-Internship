@@ -1,7 +1,11 @@
+import { RoleGuard } from './services/role.guard';
+import { AuthGuard } from './services/auth.guard';
+import { IndexComponent } from './client/index/index.component';
+import { NotFoundComponent } from './client/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CustomerLoginComponent } from './components/customer-login/customer-login.component';
-import { CustomerRegistrationComponent } from './components/customer-registration/customer-registration.component';
+
+import { CustomerRegistrationComponent } from './client/customer-registration/customer-registration.component';
 
 const routes: Routes = [
   //admin
@@ -9,9 +13,14 @@ const routes: Routes = [
   // {path: 'admin', pathMatch: 'full', component: AdminListComponent},
   // {path: '', loadChildren:() => import('./login/login.module').then(x => x.LoginModule) },
   // {path: 'home', loadChildren: () => import('./main/main.module').then(x => x.MainModule)}
-  {path: 'customer/login', component: CustomerLoginComponent },
-  {path: 'customer/registration', component: CustomerRegistrationComponent },
-  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(x => x.AdminModule)}
+  {path: '', redirectTo:'/client', pathMatch: 'full'},
+  {path: 'client',loadChildren: () => import('./client/client.module').then(x => x.ClientModule)},
+
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(x => x.AdminModule), canActivate: [AuthGuard, RoleGuard]},
+
+  {path: 'login', loadChildren: () => import('./login/login.module').then(x => x.LoginModule)},
+  
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

@@ -1,3 +1,5 @@
+import { AdminService } from './../../services/admin.service';
+import { CustomerService } from './../../services/customer.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,15 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  isLogin = false
+  wellcomeName = "";
+  constructor(private router: Router, private adminService: AdminService) { 
+      
+  }
 
   ngOnInit(): void {
+    this.isLogin = this.adminService.isLoggedIn();
+    this.wellcomeName = this.adminService.getLoginDataByKey("full_name");
   }
 
-  admin(){
-    this.router.navigate[('admin')];
-  }
-  category_list(){
-    this.router.navigate[('category-list')];
+  logout(){
+    this.adminService.logout();
+    this.isLogin = false;
+    location.reload();
+    
   }
 }

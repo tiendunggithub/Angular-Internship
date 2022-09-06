@@ -26,7 +26,7 @@ export class CustomerDetailsComponent implements OnInit {
   }
 
   goToCustomerList(){
-    this.router.navigate(['customer']);
+    this.router.navigate(['admin/customer']);
   }
 
 }

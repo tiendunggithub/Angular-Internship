@@ -1,23 +1,22 @@
-<app-header></app-header>
-<body>
-    <div class="content">
-      <div class="container">
-        <div class="row" id="table">
-            <div class="col">
-            <br>
-            <h2 mat-dialog-title>Thêm danh mục</h2>
-            <mat-dialog-content class="mat-typography">
-              <mat-form-field appearance="fill">
-                <mat-label>Tên danh mục</mat-label>
-                <input matInput [(ngModel)]="category.name">
-              </mat-form-field>
-            </mat-dialog-content>
-            <mat-dialog-actions align="end">
-              <button mat-button mat-dialog-close>Quay lại</button>
-              <button mat-button mat-raised-button color="warn" [mat-dialog-close]="true" cdkFocusInitial type="submit" (click)="saveCategory()">Tạo mới</button>
-            </mat-dialog-actions>
-          </div>
-        </div>
-    </div>
-</div>
-<app-footer></app-footer></body>
+<h2 mat-dialog-title>Thêm danh mục</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field appearance="fill">
+    <mat-label>Tên danh mục</mat-label>
+    <input matInput [(ngModel)]="category.name" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Quay lại</button>
+  <button
+    mat-button
+    mat-raised-button
+    color="warn"
+    [mat-dialog-close]="true"
+    cdkFocusInitial
+    type="submit"
+    (click)="saveCategory()"
+  >
+    Tạo mới
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,32 @@
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <p></p>
+       </div>
+      <!-- Login Form -->
+      <form  #loginForm="ngForm" method="post">
+        <input type="text" id="login" class="form-control fadeIn second" name="login" placeholder="Nhập Email"
+        [(ngModel)]="customer.email"
+        [ngModelOptions]="{standalone: true}" 
+        #name="ngModel" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [class.is-invalid]="name.invalid && name.touched">
+        <div *ngIf="name.errors && (name.invalid && name.touched)">
+          <small class="text-danger" *ngIf="name.errors['required']">Email không được để trống!</small>
+          <small class="text-danger" *ngIf="name.errors['pattern']">Email không hợp lệ!</small>
+        </div>
+
+        <input type="password" id="password" class="form-control fadeIn third" name="login" placeholder="Nhập mật khẩu"
+        [(ngModel)]="customer.password" [ngModelOptions]="{standalone: true}"
+        #password="ngModel" required [class.is-invalid]="password.invalid && password.touched"><br>
+        <small class="text-danger" [class.d-none]="password.valid || password.untouched">Mật khẩu không được để trống!</small><br>
+        <input (click)="loginRequest()" type="submit" class="fadeIn fourth" value="Đăng nhập">
+      </form>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <small class="float-left underlineHover" href="#">Quên mât khẩu?</small>
+        <small class="float-right underlineHover" (click)="goToRegistration()">Đăng ký</small>
+        <small class="float-right">Bạn chưa có tài khoản? </small>
+      </div>
+    </div>
+  </div>

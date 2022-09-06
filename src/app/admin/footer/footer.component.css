@@ -1,12 +1,10 @@
 .footer {
-    background: lightgreen;
-    color: #ccc;
-    font-weight: bold;
-    height: 50px;
+    background: #222831;
+    color: #fff;
     line-height: 50px;
     margin-top: 20px;
     bottom: 0;
     left: 0;
-    width: 100%;
+    
     text-align: center;
   }

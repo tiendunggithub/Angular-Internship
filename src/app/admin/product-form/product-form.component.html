@@ -4,7 +4,7 @@
               <form [formGroup]="productForm">
                 <div class="form-group" >
                   <label for="name">Tên sản phẩm</label>
-                  <input type="text" class="form-control" [(ngModel)]="product.name" formControlName="name" placeholder="Nhập họ tên">
+                  <input type="text" class="form-control" [(ngModel)]="product.name" formControlName="name" placeholder="Nhập tên sản phẩm">
                 </div>
                 <div class="form-group" >
                   <label for="name">Hình ảnh</label>
@@ -38,7 +38,7 @@
                       </select>
                   </div>
                 
-                <button type="submit" class="btn btn-primary" (click)="saveProduct(productForm)" *ngIf="!product.id">Tạo mới</button>
-                <button type="submit" class="btn btn-primary" (click)="updateProduct()" *ngIf="product.id">Cập nhật</button>
-                <button type="submit" class="btn btn-danger" (click)="goToProductList()" >Quay lại</button>
+                <button type="submit" class="btn btn-success mr-2" (click)="saveProduct(productForm)" *ngIf="!product.id">Tạo mới</button>
+                <button type="submit" class="btn btn-success mr-2" (click)="updateProduct()" *ngIf="product.id">Cập nhật</button>
+                <button type="submit" class="btn btn-info" (click)="goToProductList()" >Quay lại</button>
                 </form>

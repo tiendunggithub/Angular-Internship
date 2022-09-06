@@ -1,0 +1,31 @@
+.count{
+    display: flex;
+    color: black;
+    font-size: 18px;
+    padding: 20px 15px;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px rgb(175, 173, 173);
+}
+.count button{
+    padding: 15px;
+    color: #FFF;
+    border: 1px solid #fff;
+    border-radius: 25px;
+    font-size: 25px;
+    margin-right: 10px;
+}
+.product{
+    background-color: rgb(230, 71, 8);
+}
+.customer{
+    background-color: #36648B;
+}
+.admin{
+    background-color: rgb(228, 183, 0);
+}
+.order{
+    background-color: rgb(223, 4, 143);
+}

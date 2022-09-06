@@ -1,64 +1,86 @@
-<app-header></app-header>
-<body>
-    <div class="content">
-      <div class="container">
-        <div class="row" id="table">
-            <div class="col">
-            <br>
-            <h2>Danh sách sản phẩm</h2>
-            <div class="row">
-            <div class="col-sm-3"><button class="btn btn-primary mb-3" (click)="createProduct()" >Thêm mới</button></div>
-            <div class="col-sm-6"></div>
-            <div class="col-sm-3">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2"  placeholder="Search" name="name" [(ngModel)]="searchText">
-                </form>
-            <!-- <form class="example-form" >    
+<h2>Danh sách sản phẩm</h2>
+<mat-divider></mat-divider>
+<br>
+<div class="row">
+  <div class="col-sm-3">
+    <!-- <button class="btn btn-primary mb-3" (click)="createProduct()">
+      Thêm mới
+    </button> -->
+    <button mat-raised-button color="primary" (click)="createProduct()">
+      Thêm mới
+    </button>
+  </div>
+  <div class="col-sm-6"></div>
+  <div class="col-sm-3">
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        placeholder="Tìm kiếm"
+        name="name"
+        [(ngModel)]="searchText"
+      />
+    </form>
+    <!-- <form class="example-form" >    
                 <mat-form-field class="example-full-width" appearance="fill" >
                 <mat-label>Nhập họ tên</mat-label>
                 <input matInput name="name" [(ngModel)]="searchText">
                 </mat-form-field>
             </form>-->
-            </div> 
-            </div>
-            <br>
-            <table class="table table-stried">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Hình ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá bán</th>
-                        <th>Giá khuyến mãi</th>
-                        <th>Danh mục</th>
-                        <th>Chức năng</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let product of products">
-                        <td>{{product.id}}</td>
-                        <td><a href="#"><img class="card-img-top img-responsive"
-                            src = "{{'http://localhost:8080/api/v1/product/images/'+product.id}}" 
-                            style = "height:100px;width:150px"></a></td>
-                        <td>{{product.name}}</td>
-                        <!-- <td>{{product.image}}</td> -->
-                        <td>{{product.price}}</td>
-                        <td>{{product.promotion}}</td>
-                        <td>{{product.category.name}}</td>
-                        <td>
-                            <button class="btn btn-warning mr-2" (click)="detailsProduct(product.id)">details</button>
-                            <button class="btn btn-info mr-2" (click)="updateProduct(product.id)">update</button>
-                            <!-- <button class="btn btn-info mr-2" [routerLink]="['product-form', product.id]">update</button> -->
-                            <button class="btn btn-danger" (click)="deleteProduct(product.id)">delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <mat-paginator [length]= "totalElements" (page)="nextPage($event)"
-                        [pageSizeOptions]="[5, 10, 25]" aria-label="Select page">
-            </mat-paginator>
-        </div>
-    </div>
+  </div>
 </div>
-</div>
-<app-footer></app-footer></body>
+<br />
+<table class="table table-stried">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Hình ảnh</th>
+      <th>Tên sản phẩm</th>
+      <th>Giá bán</th>
+      <th>Giá khuyến mãi</th>
+      <th>Danh mục</th>
+      <th>Chức năng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>
+        <a href="#"
+          ><img
+            class="card-img-top img-responsive"
+            src="{{
+              'http://localhost:8080/api/v1/product/images/' + product.id
+            }}"
+            style="height: 100px; width: 150px"
+        /></a>
+      </td>
+      <td>{{ product.name | uppercase }}</td>
+      <!-- <td>{{product.image}}</td> -->
+      <td>{{ product.price | currency:'VND':''}}₫</td>
+      <td>{{ product.promotion | currency: 'VND': ''}}₫</td>
+      <td>{{ product.category.name }}</td>
+      <td>
+        <button
+          class="btn btn-warning mr-2" style="color: #FFF;"
+          (click)="detailsProduct(product.id)"
+        >
+        <i class="fas fa-info-circle"></i>
+        </button>
+        <button class="btn btn-info mr-2" (click)="updateProduct(product.id)">
+          <i class="fas fa-edit"></i>
+        </button>
+        <!-- <button class="btn btn-info mr-2" [routerLink]="['product-form', product.id]">update</button> -->
+        <button class="btn btn-danger" (click)="deleteProduct(product.id)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<mat-paginator
+  [length]="totalElements"
+  (page)="nextPage($event)"
+  [pageSizeOptions]="[5, 10, 25]"
+  aria-label="Select page"
+>
+</mat-paginator>

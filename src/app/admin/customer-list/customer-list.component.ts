@@ -49,7 +49,7 @@ export class CustomerListComponent implements OnInit {
     this.getCustomers(request);
   }
   detailsCustomer(id: number){
-    this.router.navigate(['customer/details', id]);
+    this.router.navigate(['admin/customer/details', id]);
   }
 
 }

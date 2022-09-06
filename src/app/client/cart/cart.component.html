@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="cart">
+    <span style="color: red;" *ngIf="leCart==0">giỏ hàng trống!!!</span>
+    <div class="cart-list" *ngIf="leCart!=0">
+      <div class="cart-items" *ngFor="let cart of cartObj">
+        <div class="cart-img">
+          <img src="{{
+            'http://localhost:8080/api/v1/product/images/' + cart.product.id
+          }}" alt="Hình ảnh không tồn tại">
+        </div>
+        <p class="title">{{ cart.product.name }}</p>
+        <div class="price">
+          <span class="price-cost">{{ cart.product.price  | currency:'VND':''}}₫</span>
+          <span class="promotion">{{ cart.product.promotion  | currency:'VND':''}}₫</span>
+          
+        </div>
+        <input type="number" min="1" name="quantity" [(ngModel)]="cart.qty" (change)="qtyChange($any($event.target).value,cart)">
+        <!-- <select  [(ngModel)]="cart.qty" (change)="qtyChange($any($event.target).value,cart)">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+     </select> -->
+        <!-- <select [(ngModel)]="cart.qty " (change)="qty"></select> -->
+        <!-- <span class="total">100,000₫</span> -->
+        <div class="action">
+          <i class="far fa-trash-alt"></i>
+        </div>
+      </div>
+      <div class="total-price" style="float: right;">
+        <span class="total" >Tổng tiền: {{cartTotalPrice | currency:'VND':''}}₫</span>
+      </div>
+    </div>
+    <br>
+      <!-- <button class="backshop"><span>Tiếp tục mua hàng</span></button> -->
+      <button class="backshop" routerLink="../"><span>Tiếp tục mua hàng </span></button>
+      <button class="backshop" routerLink="../"><span>Thanh toán </span></button>
+  </div>
+</div>

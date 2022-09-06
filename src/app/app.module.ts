@@ -16,31 +16,24 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
-
-import { CartComponent } from './components/cart/cart.component';
-import { CustomerLoginComponent } from './components/customer-login/customer-login.component';
-import { CustomerRegistrationComponent } from './components/customer-registration/customer-registration.component';
+import { NotFoundComponent } from './client/not-found/not-found.component';
+import { IndexComponent } from './client/index/index.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    // IndexComponent,
-    CartComponent,
-    CustomerLoginComponent,
-    CustomerRegistrationComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
@@ -52,6 +45,8 @@ import { CustomerRegistrationComponent } from './components/customer-registratio
     Ng2SearchPipeModule,
     MatDividerModule,
     ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule,
     ToastrModule.forRoot()
   ],
   providers: [],

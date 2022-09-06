@@ -1,30 +1,36 @@
 <h2>Danh mục sản phẩm</h2>
-<button mat-raised-button mat-button (click)="openDialog()">Thêm mới</button>
-<br />
-<div class="col-sm-3"></div>
-<div class="col-sm-6">
-  <table class="table table-stried">
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>Danh mục</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let category of categories">
-        <td>{{ category.id }}</td>
-        <td>{{ category.name }}</td>
-        <td>
-          <!-- <button class="btn btn-info mr-2" [routerLink]="['admin-form', admin.id]">update</button>
-                            <button class="btn btn-danger" (click)="deleteAdmin(admin.id)">delete</button> -->
-          <button class="btn btn-warning mr-2">details</button>
-          <button class="btn btn-info mr-2">update</button>
-          <button class="btn btn-danger">delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<mat-divider></mat-divider>
+<br>
+<button mat-raised-button color="primary" mat-button (click)="openDialog()">Thêm mới</button>
+<br>
+<br>
+<div class="row">
+  <div class="col-sm-5">
+    <table class="table table-stried">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Danh mục</th>
+          <th>Chức năng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td>{{ category.id }}</td>
+          <td>{{ category.name }}</td>
+          <td>
+            <!-- <button class="btn btn-info mr-2" [routerLink]="['admin-form', admin.id]">update</button>
+                              <button class="btn btn-danger" (click)="deleteAdmin(admin.id)">delete</button> -->
+            <button class="btn btn-warning mr-2" style="color: #FFF;"><i class="fas fa-info-circle"></i></button>
+            <button class="btn btn-info mr-2"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-4"></div>
+  <div class="col-sm-3"></div>
 </div>
-<div class="col-sm-3"></div>
 <!-- 
 <button mat-raised-button mat-button (click)="openDialog()">Open dialog</button> -->

@@ -32,7 +32,7 @@ export class ProductDetailsComponent implements OnInit {
         })
   }
   goToProductList(){
-    this.router.navigate(['product']);
+    this.router.navigate(['admin/product']);
   }
 
   comparativeCategory(o1: Category, o2: Category): boolean{

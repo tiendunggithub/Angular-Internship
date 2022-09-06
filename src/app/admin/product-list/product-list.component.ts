@@ -50,13 +50,13 @@ export class ProductListComponent implements OnInit {
   }
 
   createProduct(){
-    this.router.navigate(['product-form']);
+    this.router.navigate(['admin/product-form']);
   }
   updateProduct(id: number){
-    this.router.navigate(['product-form', id]);
+    this.router.navigate(['admin/product-form', id]);
   }
   detailsProduct(id: number){
-    this.router.navigate(['product-details', id]);
+    this.router.navigate(['admin/product-details', id]);
   }
   // private detailsProduct(id: number){
   //   this.productService.getProduct(id)

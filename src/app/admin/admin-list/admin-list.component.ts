@@ -94,7 +94,7 @@ export class AdminListComponent implements OnInit {
   }
 
   detailsAdmin(id: number){
-    this.router.navigate(['admin-details', id]);
+    this.router.navigate(['admin/admin-form', id]);
   }
 
   // search(){

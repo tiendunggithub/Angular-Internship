@@ -1,0 +1,118 @@
+*{
+    box-sizing: border-box;
+}
+.cart{
+    display: block;
+}
+.cart-list{
+    border: 1px solid #DDD;
+    box-shadow: 2px 2px 4px #DDD;
+    padding: 20px;
+    margin: auto;
+    max-width: 1100px;
+}
+img{
+    width: 100%;
+}
+input{
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    width: 80px;
+    margin-right: 10px;
+}
+.cart-items{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-items .cart-img, .quantity, .total, .action{
+    flex: 1;
+}
+.cart-items .price{
+    flex: 2;
+}
+.cart-items .price-cost{
+    font-size: 12px;
+    text-decoration: line-through;
+    color: #AAA;
+}
+.cart-items .price .promotion{
+    color: #F7452E
+}
+.cart-items .title{
+    flex: 3;
+}
+.cart-img img{
+    width: 60px;
+    height: 60px;
+}
+.cart-items .action i:hover{
+    color: #F7452E;
+}
+/* .backshop{
+    color: #FFF;
+    background-color: black;
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 2px 2px 4px #DDD;
+    border-radius: 3px;
+}
+
+.backshop::before{
+    content: '\003c';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+}
+
+.backshop:hover{
+    background-color: #FFF;
+    color: black;
+} */
+
+.backshop {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 15px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .backshop span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .backshop span::before {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+  }
+  
+  .backshop:hover span {
+    padding-left: 25px;
+  }
+  
+  .backshop:hover span::before {
+    opacity: 1;
+    left: 0;
+  }

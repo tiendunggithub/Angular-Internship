@@ -33,7 +33,7 @@ export class AdminFormComponent implements OnInit {
   }
 
   goToAdminList(){
-    this.router.navigate(['']);
+    this.router.navigate(['admin']);
   }
 
   saveAdmin(){

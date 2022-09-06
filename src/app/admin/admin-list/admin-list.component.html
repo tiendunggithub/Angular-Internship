@@ -1,53 +1,71 @@
-<app-header></app-header>
-            <h2>Danh sách Nhân viên</h2>
-            <mat-divider></mat-divider>
-            <br>
-            <div class="row">
-            <div class="col-sm-3"><button  mat-raised-button color="primary" [routerLink]="['admin-form']">Thêm mới</button>
-            <button [routerLink]="['admin-form']">new</button>
-            </div>
-            <div class="col-sm-6"></div>
-            <div class="col-sm-3">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2"  placeholder="Search" name="name" [(ngModel)]="searchText">
-                </form>
-            <!-- <form class="example-form" >    
+<h2>Danh sách admin</h2>
+<mat-divider></mat-divider>
+<br />
+<div class="row">
+  <div class="col-sm-3">
+    <button mat-raised-button color="primary" [routerLink]="['admin-form']">
+      Thêm mới
+    </button>
+  </div>
+  <div class="col-sm-6"></div>
+  <div class="col-sm-3">
+    <form class="form-inline my-2 my-lg-0">
+      <input
+        class="form-control mr-sm-2"
+        placeholder="Tìm kiếm"
+        name="name"
+        [(ngModel)]="searchText"
+      />
+    </form>
+    <!-- <form class="example-form" >    
                 <mat-form-field class="example-full-width" appearance="fill" >
                 <mat-label>Nhập họ tên</mat-label>
                 <input matInput name="name" [(ngModel)]="searchText">
                 </mat-form-field>
             </form>-->
-            </div> 
-            </div>
-            <br>
-            <table class="table table-stried" *ngIf="!checkSearch">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Họ tên</th>
-                        <th>Tên đăng nhập</th>
-                        <th>Mật khẩu</th>
-                        <th>Chức vụ</th>
-                        <th>Chức năng</th>
-                    </tr>
-                </thead>
-                <tbody >
-                    <tr *ngFor="let admin of admins | filter: searchText">
-                        <td>{{admin.id}}</td>
-                        <td>{{admin.name}}</td>
-                        <td>{{admin.username}}</td>
-                        <td>{{admin.pass}}</td>
-                        <td>{{admin.role.name}}</td>
-                        <td>
-                            <button class="btn btn-warning mr-2" (click)="detailsAdmin(admin.id)">details</button>
-                            <button class="btn btn-info mr-2" [routerLink]="['admin-form', admin.id]">update</button>
-                            <button class="btn btn-danger" (click)="deleteAdmin(admin.id)">delete</button> 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <mat-paginator [length]= "totalElements" (page)="nextPage($event)"
-                        [pageSizeOptions]="[5, 10, 25]" aria-label="Select page">
-            </mat-paginator>
-            <!-- ========================== -->
-            <app-footer></app-footer>
+  </div>
+</div>
+
+<br />
+<table class="table table-stried" *ngIf="!checkSearch">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>Họ tên</th>
+      <th>Tên đăng nhập</th>
+      <th>Mật khẩu</th>
+      <th>Chức vụ</th>
+      <th>Chức năng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let admin of admins | filter: searchText">
+      <td>{{ admin.id }}</td>
+      <td>{{ admin.name }}</td>
+      <td>{{ admin.username }}</td>
+      <td>{{ admin.pass }}</td>
+      <td>{{ admin.role.name }}</td>
+      <td>
+        <button class="btn btn-warning mr-2" style="color: #FFF;" (click)="detailsAdmin(admin.id)">
+          <i class="fas fa-info-circle"></i>
+        </button>
+        <button
+          class="btn btn-info mr-2"
+          [routerLink]="['../admin-form', admin.id]">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn btn-danger" (click)="deleteAdmin(admin.id)">
+          <i class="fas fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<mat-paginator
+  [length]="totalElements"
+  (page)="nextPage($event)"
+  [pageSizeOptions]="[5, 10, 25]"
+  aria-label="Select page"
+>
+</mat-paginator>
+<!-- ========================== -->

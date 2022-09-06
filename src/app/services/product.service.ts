@@ -1,9 +1,19 @@
 import { Category } from './../models/category';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
+const httpOptionsWithToken = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization':'Bearer '+ localStorage.getItem('token')
+  })
+}; 
 @Injectable({
   providedIn: 'root'
 })
@@ -61,7 +71,15 @@ export class ProductService {
     return this.httpClient.put(`${this.baseURL+'/update/'+id}`, value);
   }
 
-  getImage(id: number): Observable<Product>{
-    return this.httpClient.get<Product>(`${this.baseURL+'/images'}/${id}`);
+  getImage(id: number){
+    return this.httpClient.get(this.baseURL+'/images/'+id,httpOptionsWithToken);
   }
+
+  getProductListWithToken(){
+    return this.httpClient.get(this.baseURL+'/list',httpOptionsWithToken);
+  }
+
+  getPageProductWithToken(request){
+    return this.httpClient.get(this.baseURL+'/list'+request,httpOptionsWithToken)
+  }  
 }

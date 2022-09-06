@@ -19,7 +19,7 @@ export class CategoryFormComponent implements OnInit {
   }
 
   goToCategoryList(){
-    this.router.navigate(['category-list']);
+    this.router.navigate(['admin/category-list']);
   }
   saveCategory(){
     this.categoryService.createCategory(this.category)
