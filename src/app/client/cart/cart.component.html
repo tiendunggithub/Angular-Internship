@@ -1,3 +1,13 @@
+<div class="container-fluid mb-5 link-custom">
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+      <h1 class="font-weight-semi-bold text-uppercase mb-3">Giỏ hàng</h1>
+      <div class="d-inline-flex">
+          <p class="m-0"><a routerLink="">Trang chủ</a></p>
+          <p class="m-0 px-2">-</p>
+          <p class="m-0"><a [routerLink]="['/client/cart']">Giỏ hàng</a></p>
+      </div>
+  </div>
+</div>
 <div class="container">
   <div class="cart">
     <span style="color: red;" *ngIf="leCart==0">giỏ hàng trống!!!</span>
@@ -12,9 +22,9 @@
         <div class="price">
           <span class="price-cost">{{ cart.product.price  | currency:'VND':''}}₫</span>
           <span class="promotion">{{ cart.product.promotion  | currency:'VND':''}}₫</span>
-          
         </div>
         <input type="number" min="1" name="quantity" [(ngModel)]="cart.qty" (change)="qtyChange($any($event.target).value,cart)">
+        
         <!-- <select  [(ngModel)]="cart.qty" (change)="qtyChange($any($event.target).value,cart)">
           <option>1</option>
           <option>2</option>
@@ -28,7 +38,7 @@
           <option>10</option>
      </select> -->
         <!-- <select [(ngModel)]="cart.qty " (change)="qty"></select> -->
-        <!-- <span class="total">100,000₫</span> -->
+        <span class="total">{{ cart.promotion  | currency:'VND':''}}₫</span>
         <div class="action">
           <i class="far fa-trash-alt"></i>
         </div>
@@ -40,6 +50,6 @@
     <br>
       <!-- <button class="backshop"><span>Tiếp tục mua hàng</span></button> -->
       <button class="backshop" routerLink="../"><span>Tiếp tục mua hàng </span></button>
-      <button class="backshop" routerLink="../"><span>Thanh toán </span></button>
+      <button class="backshop" routerLink="/client/checkout"><span>Thanh toán </span></button>
   </div>
 </div>

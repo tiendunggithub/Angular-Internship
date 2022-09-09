@@ -1,0 +1,103 @@
+<!-- Page Header Start -->
+<div class="container-fluid link-custom">
+    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+        <h1 class="font-weight-semi-bold text-uppercase mb-3">Thanh toán</h1>
+        <div class="d-inline-flex">
+            <p class="m-0"><a routerLink="">Trang chủ</a></p>
+            <p class="m-0 px-2">-</p>
+            <p class="m-0"><a [routerLink]="['/client/checkout']">Thanh toán</a></p>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+<!-- Checkout Start -->
+<div class="container pt-5 pb-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <h4 class="font-weight-bold title">Địa chỉ thanh toán</h4>
+            <form>
+                <div class="form-group" >
+                  <label for="name">Họ Tên</label>
+                  <input type="text" class="form-control" id="name" 
+                  [(ngModel)]="customer.fullName" [ngModelOptions]="{standalone: true}" placeholder="Nhập họ tên"
+                  #name="ngModel" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [class.is-invalid]="name.invalid && name.touched">
+                </div>
+                <div *ngIf="name.errors && (name.invalid && name.touched)">
+                    <small class="text-danger" *ngIf="name.errors['required']">Họ tên không được để trống!</small>
+                    <small class="text-danger" *ngIf="name.errors['pattern']">Email không hợp lệ!</small>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="text" class="form-control" id="phone" 
+                    [(ngModel)]="customer.phone" [ngModelOptions]="{standalone: true}" placeholder="Nhập số điện thoại"
+                    #phone="ngModel" required pattern="[0-9]{10,}" [class.is-invalid]="phone.invalid && phone.touched">
+                </div>
+                <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                    <small class="text-danger" *ngIf="phone.errors['required']">Số điện thoại không được để trống!</small>
+                    <small class="text-danger" *ngIf="phone.errors['pattern']">Số điện thoại không hợp lệ!</small>
+                </div>
+                <div class="form-group">
+                  <label for="address">Địa chỉ</label>
+                  <input type="textarea" class="form-control" id="address"
+                  [(ngModel)]="customer.address" [ngModelOptions]="{standalone: true}" placeholder="Nhập địa chỉ"
+                  #address="ngModel" required pattern="{25,}" [class.is-invalid]="address.invalid && address.touched">
+                </div>
+                <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+                    <small class="text-danger" *ngIf="phone.errors['required']">Địa chỉ không được để trống!</small>
+                    <small class="text-danger" *ngIf="phone.errors['pattern']">Địa chỉ không hợp lệ!</small>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-warning border-0">
+                    <h4 class="font-weight-semi-bold m-0 title">Tổng đơn đặt hàng</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
+                    <div class="d-flex justify-content-between" *ngFor="let cart of cartObj">
+                        <p>{{cart.product.name}} x {{cart.qty}}</p>
+                        <p>{{ cart.promotion  | currency:'VND':''}}₫</p>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold title">Tổng tiền</h5>
+                        <h5 class="font-weight-bold title">{{cartTotalPrice | currency:'VND':''}}₫</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card border-secondary">
+                <div class="card-header bg-warning border-0">
+                    <h4 class="font-weight-semi-bold m-0 title">Hình thức thanh toán</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
+                            <label class="custom-control-label" for="paypal">VNPAY</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                            <label class="custom-control-label" for="directcheck">COD</label>
+                        </div>
+                    </div>
+                    <!-- <div class="">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                            <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <button (click)="checkoutCart()" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Đặt hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Checkout End -->

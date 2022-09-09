@@ -20,7 +20,7 @@ export class CartComponent implements OnInit {
   delivery_address = "";
 
   constructor(private cartService: CartService,
-    private httpClient: CustomerService,
+    private customerService: CustomerService,
     private router:Router) { }
 
   ngOnInit(): void {
@@ -28,18 +28,18 @@ export class CartComponent implements OnInit {
     this.getCartDetailsByUser();
     this.cartService.cartServiceEvent.subscribe(data=>{
       this.cartObj =  this.cartService.getCartOBj();
-      this.cartTotalPrice  = this.cartService.cartTotalPrice;
+      this.cartTotalPrice  =  this.cartService.cartTotalPrice;
     });
   }
   getCartDetailsByUser(){
-    this.httpClient.postRequestWithToken("cart/getCart",{}).subscribe((data:any)=>{
+    this.customerService.requestWithToken("cart/getCart",{}).subscribe((data:any)=>{
       this.cartObj = data;
       if(this.cartObj.length<1){
         this.leCart=0;
         // alert("Giỏ hàng trống!!!")
       }
       console.log("cartObj ==> ", data);
-      this.cartTotalPrice = this.getTotalAmounOfTheCart();   
+      this.cartTotalPrice = this.getTotalAmounOfTheCart();
     })
   }
 
@@ -49,18 +49,18 @@ export class CartComponent implements OnInit {
     for(var o in obj ){      
       totalPrice = totalPrice +parseFloat(obj[o].promotion);
     }
-    return totalPrice.toFixed(2);
+    return totalPrice.toFixed(0);
   }
 
   qtyChange(qty,cartObj){
    var request = {
     "cartId":cartObj.id,
     "qty":qty,
-    "price":(cartObj.price)*(qty),
+    // "price":(cartObj.price)*(qty),
     "promotion": (cartObj.promotion)*(qty)
   }
-    this.httpClient.postRequestWithToken("cart/updateQty",request).subscribe((data:any)=>{
-      this.cartService.getCartDetailsByUser();//for updating in the application..
+    this.customerService.requestWithToken("cart/updateQty",request).subscribe((data:any)=>{
+      this.cartService.getCartDetailsByUser(); //for updating in the application..
       this.ngOnInit();
     },error=>{
       alert("Error while fetching the cart Details");

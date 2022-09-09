@@ -1,0 +1,16 @@
+.link-custom{
+    background-color: #36648B;
+    color: #fff;
+  }
+  .link-custom a{
+    text-decoration: none;
+    color: #fff;
+    transition: all 1s;
+  }
+  .link-custom a:hover{
+    color: #ff2802;
+  }
+
+.title{
+    font-size: 18px;
+}

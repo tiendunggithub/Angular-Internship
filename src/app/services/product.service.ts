@@ -57,6 +57,11 @@ export class ProductService {
     return this.httpClient.get<Product[]>(`${this.pageUrl}`, {params});
   }
 
+  getProdByCate(id:number, request){
+    const params = request;
+    return this.httpClient.get(this.baseURL+"/getProductsByCategory/"+id, {params});
+  }
+
   searchByName(request, search): Observable<Product[]>{
     const params = request;
     const nameProduct = search;
@@ -80,6 +85,10 @@ export class ProductService {
   }
 
   getPageProductWithToken(request){
-    return this.httpClient.get(this.baseURL+'/list'+request,httpOptionsWithToken)
-  }  
+    return this.httpClient.get(this.baseURL+'/list'+request,httpOptionsWithToken);
+  }
+  
+  getProductByCategory(request){
+    return this.httpClient.get(this.baseURL+'/getProductsByCate'+request, httpOptionsWithToken);
+  }
 }

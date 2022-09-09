@@ -1,55 +1,52 @@
-
-<!-- <div class="container">
-  <div class="row">
-    <div class="col-sm">
-    </div>
-    <div class="col-sm">
-    </div>
-    <div class="col-sm">
-      <a routerLink="home"> <i class="fa-solid fa-magnifying-glass"></i></a>
-      
-    </div>
-  </div>
-</div> -->
-
 <header>
   <img src="../../../assets/images/2 0 0 1.png" alt="" class="logo">
   <div class="navbar">
     <ul class="nav_links">
       <li><a href="">Trang chủ</a></li>
-      <li><a href="">Tin tức</a></li>
+      <li><a >Tin tức</a></li>
       <li><a routerLink="product" >Sản phẩm</a></li>
       <div class="dropdown">
-      <li><a href="">Danh mục</a>
-          <ul class="dropdown-content" *ngFor="let cate of categoryList">
-            <li><a routerLink="">{{ cate.name }}</a></li>
-          </ul>
-      </li>
-    </div>
+        <li><a href="">Danh mục</a>
+            <ul class="dropdown-content" *ngFor="let cate of categoryList">
+              <a (click)="getProductsByCategory(cate)">{{ cate.name }}</a>
+            </ul>
+        </li>
+      </div>
     </ul>
-    <!-- <ul class="dropdown-content" *ngFor="let cate of categoryList" >{{ cate.name }}</ul> -->
-      <!-- <a href="">Trang chủ</a>
-      <a href="#speciality">Giới thiệu</a>
-      <a href="#popular">Sản phẩm</a>
-      <a href="#gallery">Liên hệ</a>
-      <a href="#review">Đăng nhập</a> -->
   </div>
-  <!-- <ul class="nav_icon">
-    <li><a routerLink="customer-login"><i class="fa-solid fa-user fa-xl"></i></a></li>
-    <li><a routerLink="cart" title="Giỏ hàng"><i class="fa-solid fa-cart-shopping fa-xl"></i></a></li>
-    <li><a routerLink="cart" title="Yêu thích"><i class="fa-solid fa-heart fa-beat fa-xl"></i></a></li>
-  </ul> -->
   <ul class="nav_icon" *ngIf="isLogin">
     <li><p>xin chào <span class="fullname">{{ wellcomeName }}</span></p></li>
     <!-- <li><button (click)="logout()">Logout</button></li> -->
-    <li><a (click)="logout()"><i class="fas fa-sign-out-alt fa-xl"></i></a></li>
-    <li><a routerLink="cart" title="Giỏ hàng"><i class="fa-solid fa-cart-shopping fa-xl"></i></a></li>
-    <li><a routerLink="cart" title="Yêu thích"><i class="fa-solid fa-heart fa-beat fa-xl"></i></a></li>
-    
+    <li>
+      <a (click)="logout()"><i class="fas fa-sign-out-alt fa-xl"></i></a>
+    </li>
+    <li>
+      <a routerLink="cart" title="Giỏ hàng" [matBadge]="leCart" matBadgeColor="warn" [matBadgeHidden]="leCart==0">
+        <i class="fa-solid fa-cart-shopping fa-xl"></i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="cart" title="Yêu thích">
+        <i class="fa-solid fa-heart fa-beat fa-xl"></i>
+      </a>
+    </li>
   </ul>
+
   <ul class="nav_icon" *ngIf="!isLogin">
-    <li><a routerLink="customer-login"><i class="fa-solid fa-user fa-xl"></i></a></li>
-    <li><a routerLink="cart" title="Giỏ hàng"><i class="fa-solid fa-cart-shopping fa-xl"></i></a></li>
-    <li><a routerLink="cart" title="Yêu thích"><i class="fa-solid fa-heart fa-beat fa-xl"></i></a></li>
+    <li>
+      <a routerLink="customer-login">
+        <i class="fa-solid fa-user fa-xl"></i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="cart"  title="Giỏ hàng">
+        <i class="fa-solid fa-cart-shopping fa-xl"></i>
+      </a>
+    </li>
+    <li>
+      <a routerLink="cart" title="Yêu thích">
+        <i class="fa-solid fa-heart fa-beat fa-xl"></i>
+      </a>
+    </li>
   </ul>
 </header>

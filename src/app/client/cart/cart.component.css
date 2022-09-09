@@ -1,8 +1,22 @@
 *{
     box-sizing: border-box;
 }
+.link-custom{
+    background-color: #36648B;
+    color: #fff;
+  }
+  .link-custom a{
+    text-decoration: none;
+    color: #fff;
+    transition: all 1s;
+  }
+  .link-custom a:hover{
+    color: #ff2802;
+  }
+/* start cart */
 .cart{
     display: block;
+    min-height: 39vh;
 }
 .cart-list{
     border: 1px solid #DDD;
@@ -52,30 +66,7 @@ input{
 .cart-items .action i:hover{
     color: #F7452E;
 }
-/* .backshop{
-    color: #FFF;
-    background-color: black;
-    font-size: 16px;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 2px 2px 4px #DDD;
-    border-radius: 3px;
-}
-
-.backshop::before{
-    content: '\003c';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    left: -20px;
-    transition: 0.5s;
-}
-
-.backshop:hover{
-    background-color: #FFF;
-    color: black;
-} */
+/* end cart */
 
 .backshop {
     display: inline-block;

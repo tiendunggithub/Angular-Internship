@@ -17,7 +17,7 @@ const httpOptions = {
 export class CartService {
 
   cartQty = 0;
-  cartObj = [];
+  cartObj: Cart[]=[];
   public cartTotalPrice: any;
 
   private baseURL = "http://localhost:8080/api/v1/cart";
@@ -29,7 +29,7 @@ export class CartService {
    }
 
   getCartDetailsByUser(){
-    return this.httpClient.postRequestWithToken("cart/getCart",{}).subscribe((data:any)=>{
+    return this.httpClient.requestWithToken("cart/getCart",{}).subscribe((data:any)=>{
 
       this.cartObj = data;
       this.cartQty = data.length;
@@ -52,7 +52,7 @@ export class CartService {
     }
     console.log("promotion: "+ obj.promotion)
     console.log("price: "+ obj.price)
-    this.httpClient.postRequestWithToken("cart/addProduct",request).subscribe((data:any)=>{
+    this.httpClient.requestWithToken("cart/addProduct",request).subscribe((data:any)=>{
       this.getCartDetailsByUser()
       this.toastr.success("Thêm vào giỏ hàng thành công")
     },
@@ -67,10 +67,10 @@ export class CartService {
     let totalPrice  = 0;
    
     for(var o in obj ){      
-      totalPrice = totalPrice +parseFloat(obj[o]);
+      totalPrice = totalPrice +parseFloat(obj[o].promotion);
     }
-
-    return totalPrice.toFixed(2);
+    console.log("TotalPrice Service: "+totalPrice)
+    return totalPrice.toFixed(0);
   }
 
   getQty(){

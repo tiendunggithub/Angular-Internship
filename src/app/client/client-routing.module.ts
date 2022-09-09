@@ -1,3 +1,4 @@
+import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductListComponent } from './../client/product-list/product-list.component';
 
 import { NgModule, Component } from '@angular/core';
@@ -17,8 +18,10 @@ const routes: Routes = [
       {path: '', component: IndexComponent},
       {path: 'cart', component: CartComponent},
       {path: 'product', component: ProductListComponent},
+      {path: 'product/:id', component: ProductListComponent},
       {path: 'customer-login', component: CustomerLoginComponent},
-      {path: 'customer-registration', component: CustomerRegistrationComponent}      
+      {path: 'customer-registration', component: CustomerRegistrationComponent},
+      {path: 'checkout', component: CheckoutComponent} 
     ] 
   },
   {path: '**', component: NotFoundComponent}

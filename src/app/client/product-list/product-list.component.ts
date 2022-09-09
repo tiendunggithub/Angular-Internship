@@ -1,5 +1,6 @@
+import { CategoryService } from 'src/app/services/category.service';
 import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CartService } from './../../services/cart.service';
 import { CustomerService } from './../../services/customer.service';
 import { ProductService } from './../../services/product.service';
@@ -27,11 +28,38 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private cartService: CartService,
-    private router: Router) {  }
+    private router: Router,
+    private categoryService: CategoryService,
+    private activatedRouter: ActivatedRoute ) {  }
 
   ngOnInit(): void {
+
+    this.activatedRouter.params
+        .subscribe(params => {
+          let id: number = params['id'];
+          if(id){
+            console.log("ID CATE: "+id)
+            this.productService.getProdByCate(id, {page:0, size: 9}).subscribe(data=>{
+              this.products = data['content'];
+              this.totalElements = data['totalElements'];
+            })
+          }else{
+            this.getAllProduct({page: 0, size: 9});
+          }
+        })
     
-    this.getAllProduct({});
+    
+    this.categoryService.getCategoryList().subscribe(data=>{
+      this.cateList = data;
+      // console.log("data cate: "+data)
+      // if(this.cateList.length > 1){
+      //   this.getProductsByCateogy(data[0]);
+      // }
+      // else{
+      //   this.getAllProduct({page: 0, size: 9});
+      // }
+    })
+
     // this.productService.getPageProductWithToken(request).subscribe(data=>{
     //   this.productList = data;
     //   if(this.cateList.length > 1)
@@ -40,6 +68,10 @@ export class ProductListComponent implements OnInit {
     //   alert("Server connection error "+error)
     //   console.log("data", this.productList);
     // })
+  }
+  
+  detailsAdmin(id: number){
+    this.router.navigate(['client/product', id]);
   }
 
   addCart(cartProductObj){
@@ -51,19 +83,19 @@ export class ProductListComponent implements OnInit {
     }
     this.cartService.addCart(cartObj);
   }
-  // getProductsByCateogy(obj){
-  //   let requestcate ={
-  //     "cat_id":obj.id
-  //   }
-  //   this.productService.getAllCateWithToken(requestcate).subscribe(data=>{
-  //     this.productList = data
-  //     if(this.productList.length == 0){
-  //       alert("No Product is found..");
-  //     }
-  //  },error=>{
-  //    alert("Error in login "+error);
-  //  })
-  // }
+
+  getProductsByCateogy(obj){
+    let requestcate ={
+      "cat_id":obj.id
+    }
+    this.productService.getProductByCategory(requestcate).subscribe(data=>{
+      this.productList = data
+      console.log("data: "+data)
+      if(this.productList.length == 0){
+        alert("No Product is found..");
+      }
+   })
+  }
   private getAllProduct(request){
     this.loading = true;
     this.productService.pageProduct(request)
@@ -75,6 +107,11 @@ export class ProductListComponent implements OnInit {
       },error =>{
         this.loading = false;
       });
+  }
+  getAllCategory(){
+    this.categoryService.getCategoryList().subscribe(data=>{
+      this.cateList = data;
+    })
   }
   nextPage(event: PageEvent){
     console.log('event -->', event);

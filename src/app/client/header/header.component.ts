@@ -1,3 +1,5 @@
+import { Cart } from 'src/app/models/cart';
+import { ProductService } from 'src/app/services/product.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { CustomerService } from './../../services/customer.service';
 import { Router } from '@angular/router';
@@ -13,9 +15,14 @@ export class HeaderComponent implements OnInit {
   isLogin = false;
   wellcomeName = "";
   categoryList : any;
+  productsList:any;
+  cartObj: Cart[]=[];
+  leCart: number=0;
+
   constructor(private router: Router, 
     private customerService: CustomerService, 
-    private categoryService: CategoryService) {
+    private categoryService: CategoryService,
+    private productService: ProductService) {
     // let request = {};
     //   this.customerService.postRequest(request).subscribe(data=>{
     //     console.log("test", data);
@@ -28,6 +35,7 @@ export class HeaderComponent implements OnInit {
     this.isLogin = this.customerService.isLoggedIn();
     this.wellcomeName = this.customerService.getLoginDataByKey("full_name");
     this.getAllCategory();
+    this.getCartDetailsByUser();
   }
 
   admin(){
@@ -47,6 +55,30 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.customerService.logout();
     this.isLogin = false;
+  }
+
+  getProductsByCategory(obj){
+    let request ={
+      "cate_id":obj.id
+    }
+   this.productService.getProductByCategory(request).subscribe(data=>{
+      this.productsList = data;
+      console.log(data);
+      if(this.productsList.length == 0){
+        alert("No Product is found..");
+      }
+   })
+  }
+
+  getCartDetailsByUser(){
+    this.customerService.requestWithToken("cart/getCart",{}).subscribe((data:any)=>{
+      this.cartObj = data;
+      if(this.cartObj.length<1){
+        this.leCart= this.cartObj.length;
+        console.log("leCart: "+this.leCart);
+        // alert("Giỏ hàng trống!!!")
+      }
+    })
   }
 
   // loginCheckUser(){

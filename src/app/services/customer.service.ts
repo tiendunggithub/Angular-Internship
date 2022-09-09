@@ -100,7 +100,7 @@ export class CustomerService {
     return localStorage.getItem('token');
   }
 
-  postRequestWithToken(url:string,param:{}){
+  requestWithToken(url:string,param:{}){
     const httpOptionsWithToken = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -110,7 +110,7 @@ export class CustomerService {
     var loginData = JSON.parse(localStorage.getItem("login_data") || '{}');
     var userId = loginData.user_id;
     param['userId'] = userId;
-    console.log("userID: "+userId)
+    // console.log("userID: "+userId)
     // param['userId'] = "1";
     return this.httpClient.post(this.url+url,param,httpOptionsWithToken);
   }

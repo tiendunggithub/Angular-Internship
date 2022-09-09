@@ -12,6 +12,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { ToastrModule } from 'ngx-toastr';
 import { ClientRoutingModule } from './client-routing.module';
@@ -24,6 +25,7 @@ import { CustomerLoginComponent } from './customer-login/customer-login.componen
 import { ClientComponent } from './client.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     CustomerRegistrationComponent,
     ClientComponent,
     ScrollTopComponent,
-    ProductListComponent
+    ProductListComponent,
+    CheckoutComponent
   ],
   imports: [
     CommonModule,
@@ -55,6 +58,7 @@ import { ProductListComponent } from './product-list/product-list.component';
     ReactiveFormsModule,
     MatGridListModule,
     MatCardModule,
+    MatBadgeModule,
     ToastrModule
   ]
 })
