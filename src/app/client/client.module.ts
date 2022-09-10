@@ -1,3 +1,4 @@
+import { OrderModule } from 'ngx-order-pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +27,7 @@ import { ClientComponent } from './client.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ClientComponent,
     ScrollTopComponent,
     ProductListComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -59,6 +62,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     MatGridListModule,
     MatCardModule,
     MatBadgeModule,
+    OrderModule,
     ToastrModule
   ]
 })

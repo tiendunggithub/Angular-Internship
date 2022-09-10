@@ -80,6 +80,18 @@ export class CartService {
   getCartOBj(){
     return this.cartObj;
   }
+
+  removeCart(cartId){
+    var request = {
+        "productId":"dummy_val",
+        "cartId":cartId,
+    }
+    this.httpClient.requestWithToken("cart/removeProduct",request).subscribe((data:any)=>{
+        this.getCartDetailsByUser();
+    },error=>{
+      alert("Error while fetching the cart Details");
+    })
+}
     
   
   // }

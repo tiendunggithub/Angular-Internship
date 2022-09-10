@@ -27,6 +27,7 @@ export class CustomerRegistrationComponent implements OnInit {
     this.customerService.registration(this.customer).subscribe(data=>{
       console.log(data);
       this.toastr.success('Đăng ký thành công!', 'Thông báo');
+      this.goToLogin();
     },error=>{
       console.log(error);
       this.toastr.error('Đăng ký không thành công!', 'Thông báo');

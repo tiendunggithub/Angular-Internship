@@ -4,6 +4,7 @@ import { CustomerService } from './../../services/customer.service';
 import { Cart } from 'src/app/models/cart';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -14,13 +15,13 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private cartService: CartService,
     private customerService: CustomerService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
   cartObj: Cart[]=[];
   customer: Customer = new Customer();
   leCart: any;
   cartTotalPrice :any
-  pay_type = "cash_on_delivery";
   delivery_address = "";
   fullName = "";
   ngOnInit(): void {
@@ -36,16 +37,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkoutCart(){
-      let request = {
+    let request =
+      {
         "total_price":this.cartTotalPrice,
         "pay_type":"COD",
         "deliveryAddress":this.customer.address
-     }
-      this.customerService.requestWithToken("order/checkoutCart",request).subscribe((data:any)=>{
-        alert("checkout process completed.Your Order is processed..");
-        this.cartService.getCartDetailsByUser();
-        this.router.navigate(['/client']);
-     })
+      }    
+    this.customerService.requestWithToken("order/checkoutCart",request).subscribe((data:any)=>{
+      this.toastr.success("Đặt hàng thành công");
+      this.cartService.getCartDetailsByUser();
+      this.router.navigate(['/client']);
+    });
   }
 
   getCartDetailsByUser(){
@@ -76,8 +78,5 @@ export class CheckoutComponent implements OnInit {
     this.customerService.requestWithToken("customer/getByCart",request).subscribe((data:any)=>{
       this.customer = data;
     })
-
-
   }
-
 }

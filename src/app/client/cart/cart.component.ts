@@ -66,4 +66,11 @@ export class CartComponent implements OnInit {
       alert("Error while fetching the cart Details");
     })
   }
+
+  removeCartById(cartObj){
+    if(confirm("Bạn chắc chắn muốn xóa không?")){
+      let id  = cartObj.id;
+      this.cartService.removeCart(id);
+    }    
+  }
 }

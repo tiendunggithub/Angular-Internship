@@ -21,15 +21,15 @@
             <table class="table table-stried" *ngIf="!checkSearch">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>Họ tên</th>
+                        <th (click)="sort('id')" >id<i class="fa fa-sort ml-1"></i></th>
+                        <th (click)="sort('fullName')" >Họ tên<i class="fa fa-sort ml-1"></i></th>
                         <th>Email</th>
                         <th>Địa chỉ</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody >
-                    <tr *ngFor="let customer of customers | filter: searchText">
+                    <tr *ngFor="let customer of customers | filter: searchText | orderBy: orderHeader: isDescOrder">
                         <td>{{customer.id}}</td>
                         <td>{{customer.fullName}}</td>
                         <td>{{customer.email}}</td>

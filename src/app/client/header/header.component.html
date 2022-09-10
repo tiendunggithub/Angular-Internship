@@ -5,13 +5,13 @@
       <li><a href="">Trang chủ</a></li>
       <li><a >Tin tức</a></li>
       <li><a routerLink="product" >Sản phẩm</a></li>
-      <div class="dropdown">
+      <!-- <div class="dropdown">
         <li><a href="">Danh mục</a>
             <ul class="dropdown-content" *ngFor="let cate of categoryList">
               <a (click)="getProductsByCategory(cate)">{{ cate.name }}</a>
             </ul>
         </li>
-      </div>
+      </div> -->
     </ul>
   </div>
   <ul class="nav_icon" *ngIf="isLogin">

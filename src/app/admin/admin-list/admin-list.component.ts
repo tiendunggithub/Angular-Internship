@@ -16,12 +16,13 @@ export class AdminListComponent implements OnInit {
   admins: Admin[]=[];
   loading: boolean;
   name: any;
-
   checkSearch = false;
   searchAdmins: Admin[] = [];
   searchText;
   sizeSearch: number = 0;
   nameAdmin;
+  orderHeader: String ='';
+  isDescOrder: boolean = true;
 
   constructor(private adminService: AdminService,
     private router: Router) { }
@@ -30,6 +31,11 @@ export class AdminListComponent implements OnInit {
     if(!this.checkSearch){
       this.getAdmins({page: 0,size: 5})
     }
+  }
+
+  sort(headerName:String){
+    this.isDescOrder = !this.isDescOrder;
+    this.orderHeader = headerName;
   }
 
   private getAdmins(request){
@@ -56,54 +62,47 @@ export class AdminListComponent implements OnInit {
   }
 
   deleteAdmin(id: number){
-    this.adminService.deleteAdmin(id)
+    if(confirm("Bạn chắc chắn muốn xóa không?")){
+      this.adminService.deleteAdmin(id)
         .subscribe(response => {
           this.admins = this.admins.filter(admin => admin.id != id);
-        })
+          this.ngOnInit();
+      })
+    }
   }
 
   //search
-  private getSearchByName(request, nameAdmin){
-    this.loading = true;
-    this.nameAdmin = nameAdmin;
-    console.log('name == ', this.nameAdmin);
-    if(this.nameAdmin == ''){
-      return;
-    }
-    this.adminService.searchByName(request, this.nameAdmin).subscribe(data =>{
-      console.log('data => ', data);
-      this.searchAdmins = data['content'];
-      console.log('data[content] => ',data['content']);
-      this.totalElements = data['totalElements'];
-      this.sizeSearch = this.totalElements;
-      console.log('data[totalElements] => ',data['totalElements']);
-      this.loading = false;
-    },error =>{
-      this.loading = false;
-    });
-  }
+  // private getSearchByName(request, nameAdmin){
+  //   this.loading = true;
+  //   this.nameAdmin = nameAdmin;
+  //   console.log('name == ', this.nameAdmin);
+  //   if(this.nameAdmin == ''){
+  //     return;
+  //   }
+  //   this.adminService.searchByName(request, this.nameAdmin).subscribe(data =>{
+  //     console.log('data => ', data);
+  //     this.searchAdmins = data['content'];
+  //     console.log('data[content] => ',data['content']);
+  //     this.totalElements = data['totalElements'];
+  //     this.sizeSearch = this.totalElements;
+  //     console.log('data[totalElements] => ',data['totalElements']);
+  //     this.loading = false;
+  //   },error =>{
+  //     this.loading = false;
+  //   });
+  // }
 
-  private onSearch(){
-    this.checkSearch = true;
-    console.log('name == ', this.nameAdmin);
-    if(this.nameAdmin == ""){
-      this.checkSearch = true;
-      return;
-    }
-      this.getSearchByName({page: 0, size: this.sizeSearch}, this.nameAdmin);
-  }
+  // private onSearch(){
+  //   this.checkSearch = true;
+  //   console.log('name == ', this.nameAdmin);
+  //   if(this.nameAdmin == ""){
+  //     this.checkSearch = true;
+  //     return;
+  //   }
+  //     this.getSearchByName({page: 0, size: this.sizeSearch}, this.nameAdmin);
+  // }
 
   detailsAdmin(id: number){
     this.router.navigate(['admin/admin-form', id]);
   }
-
-  // search(){
-  //   if(this.name == ""){
-  //     this.ngOnInit();
-  //   }else{
-  //     this.admins = this.admins.filter(res =>{
-  //       return res.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
-  //     })
-  //   }
-  // }
 }

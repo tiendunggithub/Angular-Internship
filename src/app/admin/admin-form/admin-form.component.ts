@@ -33,7 +33,7 @@ export class AdminFormComponent implements OnInit {
   }
 
   goToAdminList(){
-    this.router.navigate(['admin']);
+    this.router.navigate(['admin/list']);
   }
 
   saveAdmin(){
@@ -57,9 +57,5 @@ export class AdminFormComponent implements OnInit {
       return true;
     }
     return o1 == null || o2 == null || o1 == undefined || o2 == undefined ? false: o1.id == o2.id;
-  }
-
-  search(){
-
   }
 }

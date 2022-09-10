@@ -20,6 +20,8 @@ export class CustomerListComponent implements OnInit {
   searchText;
   sizeSearch: number = 0;
   nameCustomer;
+  isDescOrder: boolean = true;
+  orderHeader: String = '';
   constructor(private customerService: CustomerService,
     private router: Router) { }
 
@@ -27,6 +29,11 @@ export class CustomerListComponent implements OnInit {
     if(!this.checkSearch){
       this.getCustomers({page: 0, size: 10})
     }
+  }
+
+  sort(headerName:String){
+    this.isDescOrder = !this.isDescOrder;
+    this.orderHeader = headerName;
   }
 
   private getCustomers(request){

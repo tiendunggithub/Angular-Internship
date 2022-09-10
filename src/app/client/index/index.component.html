@@ -40,7 +40,9 @@
   </div>
 </div>
 <div class="container">
+  <h1 class="heading"> Sản phẩm mới nhất </h1>
   <div class="row">
+    
     <div class="col-md-3" *ngFor="let product of products">
       <div >
       <div class="card" data-aos="fade-up">
@@ -65,8 +67,8 @@
               <i class="fa fa-star"></i>
             </div>
             <p><span class="money" *ngIf="!product.promotion">{{ product.price | currency:'VND':''}}₫</span>
-              <span class="money" *ngIf="product.promotion" style="text-decoration: line-through;"> {{ product.price | currency:'VND':''}}₫</span>
-            <span class="old-price" *ngIf="product.promotion" style="color: red;">{{ product.promotion | currency:'VND':''}}₫</span></p> 
+              <span class="money ml-2" *ngIf="product.promotion" style="text-decoration: line-through;"> {{ product.price | currency:'VND':''}}₫</span>
+            <span class="old-price ml-2" *ngIf="product.promotion" style="color: red;">{{ product.promotion | currency:'VND':''}}₫</span></p> 
             <div class="action">
               <button (click)="addCart(product)" type="button" class="btn1">Thêm vào giỏ hàng</button>
               <!-- <a routerLink="cart" title="Giỏ hàng"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a> -->
@@ -78,6 +80,89 @@
     </div>
   </div>
 </div>
+<div class="container pt-5">
+  <div class="row pb-3">
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+          <div class="d-flex align-items-center mb-4 customer-button" style="padding: 20px;">
+              <i class="fa fa-check fa-xl m-0 mr-3"></i>
+              <h3 class="font-weight-semi-bold m-0">Sản phẩm chất lượng</h3>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+          <div class="d-flex align-items-center mb-4 customer-button" style="padding: 20px;">
+              <i class="fa fa-shipping-fast fa-xl m-0 mr-3"></i>
+              <h3 class=" m-0">Miễn phí vận chuyển</h3>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+          <div class="d-flex align-items-center mb-4 customer-button" style="padding: 20px;">
+              <i class="fa fa-exchange-alt fa-xl m-0 mr-3"></i>
+              <h3 class="font-weight-semi-bold m-0">Đổi trả trong 14 ngày</h3>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+          <div class="d-flex align-items-center mb-4 customer-button" style="padding: 20px;">
+              <i class="fa fa-phone-volume fa-xl m-0 mr-3"></i>
+              <h3 class="font-weight-semi-bold m-0">Hỗ trợ 24/7</h3>
+          </div>
+      </div>
+  </div>
+</div>
+<section class="contact" id="contact">
+  <div class="max-width">
+      <h2 class="title">Liên hệ</h2>
+      <div class="contact-content">
+          <div class="column left">
+              <p>Mọi thắc mắc, góp ý xin liên hệ với chúng tôi để có thể giải quyết nhanh nhất</p>
+              <div class="icons">
+                  <div class="row">
+                      <i class="fas fa-user"></i>
+                      <div class="info">
+                          <div class="head">Tên cửa hàng</div>
+                          <div class="sub-title">2 0 0 1</div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <div class="info">
+                          <div class="head">Địa chỉ</div>
+                          <div class="sub-title">176 Trần Phú, Phước Vĩnh, Huế</div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <i class="fas fa-envelope"></i>
+                      <div class="info">
+                          <div class="head">Email</div>
+                          <div class="sub-title">blackpearl.2001@gmail.com</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="column right">
+              <div class="text">Nhắn tin cho tôi</div>
+              <form action="#">
+                  <div class="fields">
+                      <div class="field name">
+                          <input type="text" placeholder="Họ tên" required>
+                      </div>
+                      <div class="field email">
+                          <input type="email" placeholder="Email" required>
+                      </div>
+                  </div>
+                  <div class="field">
+                      <input type="text" placeholder="Tiêu đề" required>
+                  </div>
+                  <div class="field textarea">
+                      <textarea cols="30" rows="10" placeholder="Nội dung" required></textarea>
+                  </div>
+                  <div class="button-area">
+                      <button  type="button" class="btn1">Gửi tin nhắn</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</section>
 <!-- <a href="#home" class="fas fa-angle-up" id="scroll-top"></a> -->
 
 

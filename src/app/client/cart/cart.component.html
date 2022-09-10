@@ -40,7 +40,7 @@
         <!-- <select [(ngModel)]="cart.qty " (change)="qty"></select> -->
         <span class="total">{{ cart.promotion  | currency:'VND':''}}₫</span>
         <div class="action">
-          <i class="far fa-trash-alt"></i>
+          <i class="far fa-trash-alt" (click)="removeCartById(cart)"></i>
         </div>
       </div>
       <div class="total-price" style="float: right;">

@@ -25,7 +25,8 @@ export class ProductListComponent implements OnInit {
   nameProduct;
   productList:any;
   cateList:any;
-
+  isDescOrder: boolean = true;
+  orderHeader: String ='';
   constructor(private productService: ProductService,
     private cartService: CartService,
     private router: Router,
@@ -33,21 +34,23 @@ export class ProductListComponent implements OnInit {
     private activatedRouter: ActivatedRoute ) {  }
 
   ngOnInit(): void {
-
+    if(!this.checkSearch){    
     this.activatedRouter.params
         .subscribe(params => {
           let id: number = params['id'];
           if(id){
             console.log("ID CATE: "+id)
+            this.loading = true;
             this.productService.getProdByCate(id, {page:0, size: 9}).subscribe(data=>{
               this.products = data['content'];
               this.totalElements = data['totalElements'];
+              this.loading = false;
             })
           }else{
             this.getAllProduct({page: 0, size: 9});
           }
         })
-    
+      }
     
     this.categoryService.getCategoryList().subscribe(data=>{
       this.cateList = data;
@@ -68,6 +71,31 @@ export class ProductListComponent implements OnInit {
     //   alert("Server connection error "+error)
     //   console.log("data", this.productList);
     // })
+  }
+
+  sort(headerName:String){
+    this.isDescOrder = !this.isDescOrder;
+    this.orderHeader = headerName;
+  }
+
+  private getSearchByNameProduct(request, nameProduct){
+    this.loading = true;
+    this.nameProduct = nameProduct;
+    console.log('name == ', this.nameProduct);
+    if(this.nameProduct == ''){
+      return;
+    }
+    this.productService.searchByName(request, this.nameProduct).subscribe(data =>{
+      console.log('data => ', data);
+      this.searchProducts = data['content'];
+      console.log('data[content] => ',data['content']);
+      this.totalElements = data['totalElements'];
+      this.sizeSearch = this.totalElements;
+      console.log('data[totalElements] => ',data['totalElements']);
+      this.loading = false;
+    },error =>{
+      this.loading = false;
+    });
   }
   
   detailsAdmin(id: number){

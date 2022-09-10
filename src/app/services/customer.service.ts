@@ -33,17 +33,6 @@ export class CustomerService {
     return this.httpClient.post<any>(this.baseURL+"/registration", customer);
   }
 
-  // login(customer: Customer): Observable<any>{
-  //   return this.httpClient.post<any>(this.baseURL+"/login", customer);
-  // }
-
-  postRequest(url:String,param:{}){
-    return this.httpClient.post(this.baseURL+url, param,httpOptions);
-    // .pipe(
-    //   catchError(this.handleError.bind(this)) // then handle the error
-    // );
-  }
-
   loginRequest(request){
     return this.httpClient.post(this.baseURL+"/login",request,httpOptions);
   }
@@ -74,7 +63,6 @@ export class CustomerService {
   getLoginToken(){
     return localStorage.getItem("token");
   }
-//=============================================
 
   loginUser(token){
     localStorage.setItem("token", token)
@@ -94,10 +82,6 @@ export class CustomerService {
   logout(){
     localStorage.removeItem('token');
     return true;
-  }
-
-  getToken(){
-    return localStorage.getItem('token');
   }
 
   requestWithToken(url:string,param:{}){

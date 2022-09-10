@@ -32,17 +32,17 @@
 <table class="table table-stried">
   <thead>
     <tr>
-      <th>id</th>
+      <th (click)="sort('id')" >id<i class="fa fa-sort ml-1"></i></th>
       <th>Hình ảnh</th>
-      <th>Tên sản phẩm</th>
-      <th>Giá bán</th>
-      <th>Giá khuyến mãi</th>
+      <th (click)="sort('name')">Tên sản phẩm<i class="fa fa-sort ml-1"></i></th>
+      <th (click)="sort('price')">Giá bán<i class="fa fa-sort ml-1"></i></th>
+      <th (click)="sort('promotion')">Giá khuyến mãi<i class="fa fa-sort ml-1"></i></th>
       <th>Danh mục</th>
       <th>Chức năng</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products | filter: searchText | orderBy: orderHeader: isDescOrder">
       <td>{{ product.id }}</td>
       <td>
         <a href="#"
@@ -71,7 +71,7 @@
         </button>
         <!-- <button class="btn btn-info mr-2" [routerLink]="['product-form', product.id]">update</button> -->
         <button class="btn btn-danger" (click)="deleteProduct(product.id)">
-          <i class="fas fa-trash"></i>
+          <i class="fas fa-trash" (click)="deleteProduct(product)"></i>
         </button>
       </td>
     </tr>

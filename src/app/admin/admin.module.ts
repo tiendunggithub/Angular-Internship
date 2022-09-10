@@ -32,6 +32,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { OrderModule } from 'ngx-order-pipe';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
         ProductFormComponent,
         ProductCreateComponent,
         ProductDetailsComponent,
-        ProductCreateComponent
+        ProductCreateComponent,
+        ConfirmDialogComponent
     ],
     imports: [
         AdminRoutingModule,
@@ -71,6 +74,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
         MatDividerModule,
         ReactiveFormsModule,
         MatCheckboxModule,
+        OrderModule,
         ToastrModule.forRoot()
     ],
     providers: [],

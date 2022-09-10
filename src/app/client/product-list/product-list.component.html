@@ -13,6 +13,7 @@
         <!-- Filter Start -->
         <div class="col-lg-3 col-md-12">
             <div class="border-bottom mb-4 pb-4">
+                
                 <div class="menu-cate">
                     <ul >
                         <li><a class="title">Danh mục sản phẩm</a></li>
@@ -141,43 +142,66 @@
     
         <div class="col-lg-9 col-md-3" >
             <div class="row pb-3">
-                <div class="col-lg-4 col-md-6 col-sm-12 pb-1" *ngFor="let product of products">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="name" [(ngModel)]="searchText" placeholder="Tìm kiếm">
+                            </div>
+                        </form>
+                        <div class="dropdown ml-4">
+                            <button class="btn border" type="button" id="triggerId" aria-haspopup="true"
+                                aria-expanded="false" (click)="sort('promotion')" >
+                                Sắp xếp theo giá<i class="fa fa-sort ml-1"></i>
+                            </button>
+                            <button class="btn border ml-1" type="button" id="triggerId"  aria-haspopup="true"
+                                aria-expanded="false" (click)="sort('id')">
+                                Sản phẩm mới<i class="fa fa-sort ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 col-sm-12 pb-1" *ngFor="let product of products | filter: searchText | orderBy: orderHeader: isDescOrder">
                     <div class="card" data-aos="fade-up">
-                    <div class="card-main">
-                        <!-- <div class="discount">10%</div> -->
-                        <!-- <div class="label label-green">pre oder</div> -->
-                        <!-- <div class="product-container">
-                        </div> -->
-                        <div class="img">
-                        <img src="{{
-                            'http://localhost:8080/api/v1/product/images/' + product.id
-                        }}" alt="Hình ảnh không tồn tại">
-                        </div>
-                        <div class="card-line"></div>
-                        <div class="card-content">
-                        <a routerLink="">{{ product.name | uppercase }}</a>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <p><span class="money" *ngIf="!product.promotion">{{ product.price | currency:'VND':''}}₫</span>
-                            <span class="money" *ngIf="product.promotion" style="text-decoration: line-through;"> {{ product.price | currency:'VND':''}}₫</span>
-                        <span class="old-price" *ngIf="product.promotion" style="color: red;">{{ product.promotion | currency:'VND':''}}₫</span></p> 
-                        <div class="action">
-                            <button (click)="addCart(product)" type="button" class="btn1">Thêm vào giỏ hàng</button>
-                            <!-- <a routerLink="cart" title="Giỏ hàng"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a> -->
-                        </div>
+                        <div class="card-main">
+                            <!-- <div class="discount">10%</div> -->
+                            <!-- <div class="label label-green">pre oder</div> -->
+                            <!-- <div class="product-container">
+                            </div> -->
+                            <div class="img">
+                            <img src="{{
+                                'http://localhost:8080/api/v1/product/images/' + product.id
+                            }}" alt="Hình ảnh không tồn tại">
+                            </div>
+                            <div class="card-line"></div>
+                            <div class="card-content">
+                                <a routerLink="">{{ product.name | uppercase }}</a>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <p><span class="money" *ngIf="!product.promotion">{{ product.price | currency:'VND':''}}₫</span>
+                                    <span class="money" *ngIf="product.promotion" style="text-decoration: line-through;"> {{ product.price | currency:'VND':''}}₫</span>
+                                <span class="old-price ml-2" *ngIf="product.promotion" style="color: red;">{{ product.promotion | currency:'VND':''}}₫</span></p> 
+                                <div class="action">
+                                    <button (click)="addCart(product)" type="button" class="btn1">Thêm vào giỏ hàng</button>
+                                    <!-- <a routerLink="cart" title="Giỏ hàng"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a> -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <mat-paginator  
+            <mat-paginator  
         [length]="totalElements" (page)="nextPage($event)"
         [pageSizeOptions]="[9, 15, 24]" aria-label="Select page">
         </mat-paginator>
+        </div>
+        
     </div>
 </div>
+

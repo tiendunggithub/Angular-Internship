@@ -3,7 +3,7 @@
 <br />
 <div class="row">
   <div class="col-sm-3">
-    <button mat-raised-button color="primary" [routerLink]="['admin-form']">
+    <button mat-raised-button color="primary" [routerLink]="['/admin/admin-form']">
       Thêm mới
     </button>
   </div>
@@ -30,16 +30,16 @@
 <table class="table table-stried" *ngIf="!checkSearch">
   <thead>
     <tr>
-      <th>id</th>
-      <th>Họ tên</th>
-      <th>Tên đăng nhập</th>
+      <th (click)="sort('id')" >id<i class="fa fa-sort ml-1"></i></th>
+      <th (click)="sort('name')">Họ tên<i class="fa fa-sort ml-1"></i></th>
+      <th (click)="sort('username')">Tên đăng nhập<i class="fa fa-sort ml-1"></i></th>
       <th>Mật khẩu</th>
       <th>Chức vụ</th>
       <th>Chức năng</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let admin of admins | filter: searchText">
+    <tr *ngFor="let admin of admins | filter: searchText | orderBy: orderHeader: isDescOrder">
       <td>{{ admin.id }}</td>
       <td>{{ admin.name }}</td>
       <td>{{ admin.username }}</td>

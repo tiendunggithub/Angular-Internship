@@ -20,11 +20,18 @@ export class ProductListComponent implements OnInit {
   searchText;
   sizeSearch: number = 0;
   nameProduct;
+  isDescOrder: boolean = true;
+  orderHeader: String = '';
   constructor(private productService: ProductService,
     private router: Router) { }
 
   ngOnInit(): void {
     this.getAllProduct({page: 0, size: 5});
+  }
+
+  sort(headerName:String){
+    this.isDescOrder = !this.isDescOrder;
+    this.orderHeader = headerName;
   }
 
   private getAllProduct(request){
@@ -66,10 +73,13 @@ export class ProductListComponent implements OnInit {
   // }
 
   deleteProduct(id: number){
+    if(confirm("Bạn chắc chắn muốn xóa không?")){
     this.productService.deleteProduct(id)
         .subscribe(response => {
           this.products = this.products.filter(product => product.id != id);
+          this.ngOnInit();
         })
+      }
   }
 
   //search
